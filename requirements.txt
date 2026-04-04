@@ -1,0 +1,4 @@
+# SeniorShield Dependencies
+psutil>=5.9.0
+Pillow>=9.0.0
+twilio>=8.0.0
