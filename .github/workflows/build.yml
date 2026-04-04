@@ -20,15 +20,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install psutil Pillow pyinstaller
+          pip install nuitka psutil Pillow
 
-      - name: Build .exe with PyInstaller
+      - name: Build .exe with Nuitka
         run: |
-          pyinstaller --onefile --windowed --name SeniorShield senior_shield.py
+          python -m nuitka --onefile --windows-disable-console --enable-plugin=tk-inter --output-filename=SeniorShield.exe senior_shield.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: SeniorShield-exe
-          path: dist/SeniorShield.exe
+          path: SeniorShield.exe
           retention-days: 30
