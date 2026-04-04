@@ -20,11 +20,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install nuitka psutil Pillow
+          pip install nuitka zstandard psutil Pillow
 
       - name: Build .exe with Nuitka
         run: |
-          python -m nuitka --onefile --windows-disable-console --enable-plugin=tk-inter --output-filename=SeniorShield.exe senior_shield.py
+          python -m nuitka --onefile --windows-console-mode=disable --enable-plugin=tk-inter --assume-yes-for-downloads --output-filename=SeniorShield.exe senior_shield.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
