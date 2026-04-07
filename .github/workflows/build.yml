@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install nuitka zstandard psutil Pillow
+          pip install nuitka zstandard psutil Pillow twilio
 
       - name: Build .exe with Nuitka
         run: |
