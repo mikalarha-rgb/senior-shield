@@ -66,7 +66,17 @@ def load_config():
     """Load configuration from file."""
     ensure_config()
     with open(CONFIG_FILE, "r") as f:
-        return json.load(f)
+        saved = json.load(f)
+    # Merge with defaults to handle old configs missing new keys
+    defaults = get_default_config()
+    for key, value in defaults.items():
+        if key not in saved:
+            saved[key] = value
+        elif isinstance(value, dict):
+            for subkey, subvalue in value.items():
+                if subkey not in saved[key]:
+                    saved[key][subkey] = subvalue
+    return saved
 
 
 def save_config(config):

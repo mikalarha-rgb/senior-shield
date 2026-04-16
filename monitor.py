@@ -113,6 +113,8 @@ class ProcessMonitor:
 
     def check_active_remote_session(self):
         """Check if any remote access tool is currently running."""
+        if self._config is None:
+            self._load_config()
         current = self._get_running_processes()
         remote_tools = [t.lower() for t in self._config["monitoring"]["remote_access_tools"]]
 
